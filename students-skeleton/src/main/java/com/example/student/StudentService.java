@@ -72,5 +72,7 @@ public class StudentService {
     }
 
     // DELETE
-    public void deleteStudent() {}
+    public void deleteStudent(Long id) {
+        repository.deleteById(id);
+    }
 }

@@ -70,13 +70,18 @@ public class StudentController {
 
     // id에 해당하는 StudentEntity delete.html
     @GetMapping("/{id}/delete-view")
-    public String deleteView() {
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
+    public String deleteView(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("student",service.readStudent(id));
+        return "delete";
+        //throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
     }
 
     // id에 해당하는 StudentEntity 삭제 후 홈페이지로
     @PostMapping("/{id}/delete")
-    public String delete() {
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
+    public String delete(@PathVariable("id") Long id)
+    {
+        service.deleteStudent(id);
+        return "redirect:/students/";
+        //throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED);
     }
 }
